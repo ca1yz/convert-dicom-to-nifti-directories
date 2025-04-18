@@ -74,12 +74,12 @@ git clone https://github.com/ca1yz/dcmsort2nii.git
 cd dcmsort2nii
 ```
 
-**b. Install Dependencies:**
+**b. Create virtual environment and install the tool:**
 
 ```bash
 conda create -n dcmsort2nii python=3.11 -y
 conda activate dcmsort2nii
-pip install --no-cache-dir -r requirements.txt
+pip install --no-cache-dir -e .
 ```
 
 **c. Run the Tool:**
