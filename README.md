@@ -110,3 +110,5 @@ options:
   --threads THREADS     Number of worker processes (default: all available)
 ```
 
+## Acknowledgments
+The core functionality of this project is based on [dicom2nifti](https://github.com/icometrix/dicom2nifti). We greatly appreciate the work and contributions of its developers, which serve as the foundation for this project.
