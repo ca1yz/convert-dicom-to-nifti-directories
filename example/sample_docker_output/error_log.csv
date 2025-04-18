@@ -1,0 +1,6 @@
+SequenceName,FirstDicomFile,Step,Error
+20140320_0001_3-pl_Loc_T2,/data/input/MR201403200524/1.2.840.113619.2.176.3596.11861954.7743.1395176359.243.dcm,Conversion/Processing,dicom2nifti.convert_directory failed converting 9 files: /data/input/MR201403200524/1.2.840.113619.2.176.3596.11861954.7743.1395176359.243.dcm
+20140320_0701_PJN,/data/input/MR201403200524/1.2.840.113619.2.80.45416386.30994.1395357931.27.dcm,Conversion/Processing,dicom2nifti.convert_directory failed converting 21 files: /data/input/MR201403200524/1.2.840.113619.2.80.45416386.30994.1395357931.27.dcm
+20140320_0700_PJN,/data/input/MR201403200524/1.2.840.113619.2.80.45416386.30994.1395357927.16.dcm,Conversion/Processing,dicom2nifti.convert_directory failed converting 21 files: /data/input/MR201403200524/1.2.840.113619.2.80.45416386.30994.1395357927.16.dcm
+20221225_0001_3-Pl_Loc_SSFSE,/data/input/020/MR417599/DJ20221225A0071/3PlLocSSFSE_1_1/3.0.dcm,Conversion/Processing,dicom2nifti.convert_directory failed converting 19 files: /data/input/020/MR417599/DJ20221225A0071/3PlLocSSFSE_1_1/3.0.dcm
+"20140320_0007_E3DTOF_MRA,_3slab",/data/input/MR201403200524/1.2.840.113619.2.176.3596.11861954.7743.1395176359.757.dcm,Conversion/Processing,dicom2nifti.convert_directory failed converting 156 files: /data/input/MR201403200524/1.2.840.113619.2.176.3596.11861954.7743.1395176359.757.dcm

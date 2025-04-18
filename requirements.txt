@@ -1,0 +1,7 @@
+pandas
+pydicom
+nibabel
+dicom2nifti
+tqdm
+pyarrow
+openpyxl  # Needed for saving error log as CSV 
