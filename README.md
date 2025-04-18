@@ -20,13 +20,13 @@ Using Docker is the recommended method as it encapsulates all dependencies and e
 
 Navigate to the project's root directory (where the `Dockerfile` is located) and run:
 
-```
+```bash
 docker build -t dcmsort2nii:latest .
 ```
 
 **b. Run the Docker Container:**
 
-```
+```bash
 docker run --rm \
   -v /path/to/your/dicom/files:/data/input:ro \
   -v /path/to/your/output:/data/output \
@@ -35,7 +35,7 @@ docker run --rm \
 ```
 
 example output:
-```
+```bash
 $ docker run --rm \      
   -v "$(pwd)/example/sample_data":/data/input:ro \
   -v "$(pwd)/example/sample_docker_output":/data/output \
@@ -62,22 +62,22 @@ If you prefer to install the tool without Docker, you can use the following step
 
 **a. Clone the Repository:**
 
-```
+```bash
 git clone https://github.com/ca1yz/dcmsort2nii.git
 cd dcmsort2nii
 ```
 
 **b. Install Dependencies:**
 
-```
-conda create -n dcmsort2nii python=3.10 -y
+```bash
+conda create -n dcmsort2nii python=3.11 -y
 conda activate dcmsort2nii
-pip install -r requirements.txt
+pip install --no-cache-dir -r requirements.txt
 ```
 
 **c. Run the Tool:**
 
-```
+```bash
 python dcmsort2nii/main.py /path/to/your/dicom/files -o /path/to/your/output --split --log_error
 ```
 

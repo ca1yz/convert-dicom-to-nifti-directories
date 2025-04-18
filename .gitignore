@@ -8,3 +8,6 @@ __pycache__
 sample_data/
 sample_output/
 sample_docker_output/
+
+.DS_Store
+*.egg-info

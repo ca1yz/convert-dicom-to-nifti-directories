@@ -7,9 +7,9 @@ import concurrent.futures
 import pyarrow.parquet as pq
 from tqdm import tqdm
 from typing import List, Dict, Any
-from nifti_utils import split_4d_to_3d
-from conversion import convert_sequence_to_nifti
-from dicom_utils import extract_all_metadata, analyze_dicom_sequences
+from dcmsort2nii.nifti_utils import split_4d_to_3d
+from dcmsort2nii.conversion import convert_sequence_to_nifti
+from dcmsort2nii.dicom_utils import extract_all_metadata, analyze_dicom_sequences
 
 def process_sequence_and_save(
     dicom_files: List[str],

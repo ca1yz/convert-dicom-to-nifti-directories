@@ -1,8 +1,8 @@
 import os
 import argparse
-from pipeline import process_root_dir
+from dcmsort2nii.pipeline import process_root_dir
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description='Convert DICOM sequences to NIfTI with mapping.')
     parser.add_argument('dicom_root_dir', type=str,
                        help='Root directory containing DICOM files')
@@ -37,3 +37,6 @@ if __name__ == "__main__":
                      args.log_error,
                      args.split,
                      args.log_debug)
+
+if __name__ == "__main__":
+    main()
