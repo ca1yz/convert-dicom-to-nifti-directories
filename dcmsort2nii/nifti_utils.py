@@ -1,6 +1,6 @@
 import os
-import nibabel as nib   
 import numpy as np
+import nibabel as nib   
 from typing import List, Tuple  
 
 def split_4d_to_3d(dcm_file: str, nifti_file: str) -> List[Tuple[str, str]]:

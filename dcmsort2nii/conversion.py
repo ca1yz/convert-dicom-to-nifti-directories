@@ -1,9 +1,9 @@
 import os
-import tempfile
 import shutil
+import tempfile
 import dicom2nifti
 from typing import List, Tuple  
-from metadata_utils import analyze_dicom_sequences
+from dicom_utils import analyze_dicom_sequences
 from exception import ConversionError, suppress_stdout_stderr
 
 def convert_single_folder(dicom_dir: str, output_dir: str) -> List[Tuple[str, str]]:

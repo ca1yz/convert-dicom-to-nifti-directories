@@ -1,9 +1,9 @@
 import os
+import re
 import pydicom
 import hashlib
 from collections import defaultdict
 from typing import Union
-import re # Need re for sanitization
 
 def sanitize_filename(name):
     """Removes or replaces characters unsuitable for filenames."""
