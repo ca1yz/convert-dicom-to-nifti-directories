@@ -8,13 +8,13 @@ if __name__ == "__main__":
                        help='Root directory containing DICOM files')
     parser.add_argument('-o', '--output_root_dir', type=str,
                        help='Output directory for NIfTI files')
-    parser.add_argument('-e', '--error_log', action='store_true',
+    parser.add_argument('-e', '--log_error', action='store_true',
                        help='Log errors to error_log.csv')
     parser.add_argument('-s', '--split', action='store_true', default=False,
                        help='Split 4D NIfTI files into 3D volumes')
     parser.add_argument('--no-split', action='store_false', dest='split',
                        help='Explicitly disable splitting 4D NIfTI files')
-    parser.add_argument('--log-debug', action='store_true',
+    parser.add_argument('--log_debug', action='store_true',
                        help='Enable detailed debug logging to console')
     parser.add_argument('--threads', type=int, default=0,
                        help='Number of worker processes (default: all available)')
@@ -34,6 +34,6 @@ if __name__ == "__main__":
     process_root_dir(args.dicom_root_dir,
                      args.output_root_dir,
                      args.threads,
-                     args.error_log,
+                     args.log_error,
                      args.split,
                      args.log_debug)
