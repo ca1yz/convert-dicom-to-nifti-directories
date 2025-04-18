@@ -6,7 +6,7 @@
 
 ### Example Input / Output 
 
-Example notebook available [here](./example/example_notebook.ipynb)
+See example notebook [here](./example/example_notebook.ipynb)
 
 ## Installation
 
@@ -26,10 +26,17 @@ docker build -t dcmsort2nii:latest .
 
 **b. Run the Docker Container:**
 
+Change the `INPUT_DIR` and `OUTPUT_DIR` to your desired paths.
 ```bash
+INPUT_DIR=/path/to/your/dicom_root_dir
+OUTPUT_DIR=/path/to/your/output
+
+mkdir -p $OUTPUT_DIR # prevent permission errors
+
 docker run --rm \
-  -v /path/to/your/dicom/files:/data/input:ro \
-  -v /path/to/your/output:/data/output \
+  -u "$(id -u):$(id -g)"\
+  -v $INPUT_DIR:/data/input:ro \
+  -v $OUTPUT_DIR:/data/output \
   dcmsort2nii:latest \
   /data/input -o /data/output --split --log_error
 ```
@@ -78,7 +85,7 @@ pip install --no-cache-dir -r requirements.txt
 **c. Run the Tool:**
 
 ```bash
-python dcmsort2nii/main.py /path/to/your/dicom/files -o /path/to/your/output --split --log_error
+dcmsort2nii /path/to/your/dicom/files -o /path/to/your/output --split --log_error
 ```
 
 options:
