@@ -12,6 +12,12 @@
 
 ## 安装
 
+首先克隆仓库:
+```bash
+git clone https://github.com/ca1yz/dcmsort2nii.git
+cd dcmsort2nii
+```
+
 使用 `dcmsort2nii` 主要有两种方式：
 
 ### 1. Docker (推荐)
@@ -70,14 +76,7 @@ Error log saved to: /data/output/error_log.csv
 
 如果您不想使用 Docker，可以按照以下步骤安装：
 
-**a. 克隆仓库:**
-
-```bash
-git clone https://github.com/ca1yz/dcmsort2nii.git
-cd dcmsort2nii
-```
-
-**b. 创建虚拟环境并安装工具:**
+**a. 创建虚拟环境并安装工具:**
 
 ```bash
 conda create -n dcmsort2nii python=3.11 -y
@@ -85,7 +84,7 @@ conda activate dcmsort2nii
 pip install --no-cache-dir -e .
 ```
 
-**c. 运行工具:**
+**b. 运行工具:**
 
 ```bash
 dcmsort2nii /path/to/your/dicom/files -o /path/to/your/output --split --log_error

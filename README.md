@@ -12,6 +12,12 @@ See example notebook [here](./example/example_notebook.ipynb)
 
 ## Installation
 
+Firts clone the repo.
+```bash
+git clone https://github.com/ca1yz/dcmsort2nii.git
+cd dcmsort2nii
+```
+
 There are two primary ways to use `dcmsort2nii`:
 
 ### 1. Docker (Recommended)
@@ -69,14 +75,7 @@ Error log saved to: /data/output/error_log.csv
 
 If you prefer to install the tool without Docker, you can use the following steps:
 
-**a. Clone the Repository:**
-
-```bash
-git clone https://github.com/ca1yz/dcmsort2nii.git
-cd dcmsort2nii
-```
-
-**b. Create virtual environment and install the tool:**
+**a. Create virtual environment and install the tool:**
 
 ```bash
 conda create -n dcmsort2nii python=3.11 -y
@@ -84,7 +83,7 @@ conda activate dcmsort2nii
 pip install --no-cache-dir -e .
 ```
 
-**c. Run the Tool:**
+**b. Run the Tool:**
 
 ```bash
 dcmsort2nii /path/to/your/dicom/files -o /path/to/your/output --split --log_error
