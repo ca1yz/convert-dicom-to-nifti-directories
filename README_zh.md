@@ -1,3 +1,5 @@
+[English](./README.md) | **中文**
+
 # Dcmsort2nii
 
 ## 简介
