@@ -1,14 +1,25 @@
 **English** | [中文](./README_zh.md)
 
+---
+
 # Dcmsort2nii
 
 ## Introduction
 
-`dcmsort2nii` is a Python tool that simplifies converting large, potentially **nested directories** of **DICOM** files into **NIfTI** format. It acts as a convenient wrapper around `dicom2nifti` for batch processing medical imaging datasets. Key features include automatic **sequence detection** (separating multiple sequences within one directory), **parallel conversion**, optional **4D splitting**, generation of a **metadata mapping file**, and easy deployment via **Dockerfile**.
+Dealing with medical imaging data often involves the challenging task of converting large, sometimes disorganized, collections of DICOM files into the NIfTI format required by many analysis pipelines. If you've ever wrestled with organizing files scattered across nested directories or struggled to correctly identify different imaging sequences (especially with multi-site or inconsistently structured data), you know it can be a significant bottleneck.
 
-### Example Input / Output 
+`dcmsort2nii` aims to alleviate this headache. It acts as a smart wrapper around the excellent `dicom2nifti` library, adding **key features** designed to streamline the batch processing of complex datasets. Our goal is to make the often-tedious first step of DICOM organization and conversion much simpler and faster:
 
-See example notebook [here](./example/example_notebook.ipynb)
+*   **Handles Complex Structures**: Simply point it at your main DICOM directory, and it intelligently scans through all subdirectories to find your data.
+*   **Automatic Sequence Grouping**: Analyzes DICOM headers within each patient/study folder to automatically identify and group different imaging sequences, even if they're mixed together.
+*   **Accelerated Conversion**: Leverages multiple CPU cores for parallel processing, significantly speeding up conversion for large datasets.
+*   **Essential Metadata Tracking**: Generates a detailed `.parquet` file (with a `.csv` fallback) that maps every output NIfTI file back to its original DICOM sequence details and source files – crucial for reproducibility and traceability!
+*   **Flexible 4D Handling**: Optionally splits 4D NIfTI files (common for fMRI or DWI) into individual 3D volumes, useful for specific analysis or model training needs.
+*   **Easy Deployment**: Includes a Dockerfile for straightforward deployment (recommended), but is also installable via pip/conda.
+
+### Example Input / Output
+
+See a practical example in action here: [./example/example_notebook.ipynb](./example/example_notebook.ipynb)
 
 ## Installation
 
@@ -111,5 +122,12 @@ options:
   --threads THREADS     Number of worker processes (default: all available)
 ```
 
+## File an Issue
+
+We highly encourage you to try `dcmsort2nii` on your own datasets! Real-world testing is invaluable for improving the tool.
+
+Did you encounter a bug? Have an idea for a new feature or improvement? Did the tool struggle with your specific data structure or format? Please don't hesitate to **open an issue** on the GitHub repository! All feedback, positive or critical, is genuinely welcome and helps make `dcmsort2nii` better for everyone.
+
 ## Acknowledgments
-The core functionality of this project is based on [dicom2nifti](https://github.com/icometrix/dicom2nifti). We greatly appreciate the work and contributions of its developers, which serve as the foundation for this project.
+
+This project builds upon the core functionality provided by the fantastic [dicom2nifti](https://github.com/icometrix/dicom2nifti) library. We are deeply grateful to its developers for their excellent work, which serves as the foundation for `dcmsort2nii`.
