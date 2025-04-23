@@ -6,16 +6,16 @@
 
 ## 简介
 
-处理医学影像数据时，一项常见的挑战是将大量、有时结构混乱的 DICOM 文件集合转换为许多分析流程所需的 NIfTI 格式。如果您曾费力地整理散布在嵌套目录中的文件，或者难以准确区分不同的成像序列（尤其是在处理来自多中心或结构不一致的数据时），您就会明白这可能是一个主要的瓶颈。
+处理医学影像数据时，一项常见的挑战是将大量、有时结构混乱的 DICOM 文件集合转换为许多分析流程所需的 NIfTI 格式。
 
-`dcmsort2nii` 旨在减轻这一负担。它作为优秀的 `dicom2nifti` 库的一个智能封装，增加了旨在**简化**复杂数据集**批量处理**的**关键功能**。我们的目标是让通常繁琐的 DICOM 整理和转换的第一步变得更加简单和快速：
+`dcmsort2nii` 旨在减轻这一负担。它作为优秀的 `dicom2nifti` 库的一个封装，增加了旨在**简化**复杂数据集**批量处理**的**关键功能**。我们的目标是让繁琐的 DICOM 整理和转换变得更加简单快速：
 
-*   **处理复杂结构**：只需将其指向您的主 DICOM 目录，它就能智能地扫描所有子目录以查找您的数据。
-*   **自动序列分组**：分析每个患者/研究文件夹中的 DICOM 标头，自动识别并分组不同的成像序列（例如 T1w、T2w、fMRI、DWI），即使它们混合在一起。
+*   **处理复杂目录结构**：只需指定根目录，即可自动遍历所有子目录结构。
+*   **自动序列分组**：分析每个文件中的 DICOM 标头，自动识别并分组不同的成像序列，即使原始数据混杂存放。
 *   **加速转换**：利用多个 CPU 核心进行并行处理，显著加快大型数据集的转换速度。
-*   **关键元数据追踪**：生成详细的 `.parquet` 文件（并提供 `.csv` 作为备选），将每个输出的 NIfTI 文件映射回其原始 DICOM 序列的详细信息和源文件——这对于可复现性和可追溯性至关重要！
+*   **关键元数据追踪**：生成详细的 `.parquet` 文件（并提供 `.csv` 作为备选），将每个输出的 NIfTI 文件映射回其原始 DICOM 序列的详细信息。
 *   **灵活的 4D 处理**：可选择将 4D NIfTI 文件（常见于 fMRI 或 DWI）分割成单独的 3D 卷，这对于特定的分析或模型训练需求很有用。
-*   **轻松部署**：包含一个 Dockerfile，用于简单、依赖关系明确的部署（推荐方式），但也可以在 conda 环境中通过 pip 安装。
+*   **轻松部署**：Docker部署，但也可以在 conda 环境中通过 pip 安装。
 
 ### 输入/输出示例
 
@@ -47,21 +47,17 @@ docker build -t dcmsort2nii:latest .
 
 将 `INPUT_DIR` 和 `OUTPUT_DIR` 更改为您期望的路径。
 ```bash
-# 定义你的 DICOM 输入目录路径
 INPUT_DIR=/path/to/your/dicom_root_dir
-# 定义你的 NIfTI 输出目录路径
 OUTPUT_DIR=/path/to/your/output
+# 以下不变
+mkdir -p $OUTPUT_DIR # prevent permission errors
 
-# 创建输出目录以避免权限错误
-mkdir -p $OUTPUT_DIR
-
-# 运行容器
 docker run --rm \
-  -u "$(id -u):$(id -g)" \ # 使用当前用户权限运行，避免输出文件权限问题
-  -v $INPUT_DIR:/data/input:ro \ # 将输入目录挂载为只读卷
-  -v $OUTPUT_DIR:/data/output \ # 将输出目录挂载为读写卷
-  dcmsort2nii:latest \ # 使用刚才构建的镜像
-  /data/input -o /data/output --split --log_error # 传递给脚本的参数
+  -u "$(id -u):$(id -g)"\
+  -v $INPUT_DIR:/data/input:ro \
+  -v $OUTPUT_DIR:/data/output \
+  dcmsort2nii:latest \
+  /data/input -o /data/output --split --log_error
 ```
 
 **运行示例输出:**
@@ -128,10 +124,10 @@ usage: main.py [-h] [-o OUTPUT_ROOT_DIR] [-e] [-s] [--no-split] [--log_debug]
 
 ## 提交 Issue (问题反馈)
 
-我们非常鼓励您在自己的数据集上尝试 `dcmsort2nii`！真实世界的数据测试对于改进这个工具来说是无价的。
+我们希望您在自己的数据集上尝试 `dcmsort2nii`！真实世界的数据测试对于改进这个工具来说很宝贵。
 
-您是否遇到了 bug？对于新功能或改进有什么想法？这个工具在处理您特定的数据结构或格式时遇到了困难吗？请不要犹豫，在 GitHub 仓库上**提交一个 Issue**！无论是正面的还是批评性的反馈，我们都真诚欢迎，它们将帮助 `dcmsort2nii` 变得更好，惠及每一位用户。
+您是否遇到了 bug？对于新功能或改进有什么想法？这个工具在处理您特定的数据结构或格式时遇到了困难吗？在 GitHub 仓库上**提交一个 Issue**！无论是正面的还是批评性的反馈，都将帮助 `dcmsort2nii` 变得更好，惠及每一位用户。
 
 ## 致谢
 
-本项目的核心功能基于出色的 [dicom2nifti](https://github.com/icometrix/dicom2nifti) 库。我们对其开发者们的杰出工作深表感谢，他们的成果是 `dcmsort2nii` 的基石。
+本项目的核心功能基于出色的 [dicom2nifti](https://github.com/icometrix/dicom2nifti) 项目。我们对其开发者们的杰出工作深表感谢，他们的成果是 `dcmsort2nii` 的基石。

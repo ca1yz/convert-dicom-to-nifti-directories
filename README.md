@@ -6,14 +6,14 @@
 
 ## Introduction
 
-Dealing with medical imaging data often involves the challenging task of converting large, sometimes disorganized, collections of DICOM files into the NIfTI format required by many analysis pipelines. If you've ever wrestled with organizing files scattered across nested directories or struggled to correctly identify different imaging sequences (especially with multi-site or inconsistently structured data), you know it can be a significant bottleneck.
+Dealing with medical imaging data often involves the challenging task of converting large, sometimes disorganized, collections of DICOM files into the NIfTI format. 
 
 `dcmsort2nii` aims to alleviate this headache. It acts as a smart wrapper around the excellent `dicom2nifti` library, adding **key features** designed to streamline the batch processing of complex datasets. Our goal is to make the often-tedious first step of DICOM organization and conversion much simpler and faster:
 
 *   **Handles Complex Structures**: Simply point it at your main DICOM directory, and it intelligently scans through all subdirectories to find your data.
 *   **Automatic Sequence Grouping**: Analyzes DICOM headers within each patient/study folder to automatically identify and group different imaging sequences, even if they're mixed together.
 *   **Accelerated Conversion**: Leverages multiple CPU cores for parallel processing, significantly speeding up conversion for large datasets.
-*   **Essential Metadata Tracking**: Generates a detailed `.parquet` file (with a `.csv` fallback) that maps every output NIfTI file back to its original DICOM sequence details and source files – crucial for reproducibility and traceability!
+*   **Essential Metadata Tracking**: Generates a detailed `.parquet` file (with a `.csv` fallback) that maps every output NIfTI file back to its original DICOM sequence details and source files.
 *   **Flexible 4D Handling**: Optionally splits 4D NIfTI files (common for fMRI or DWI) into individual 3D volumes, useful for specific analysis or model training needs.
 *   **Easy Deployment**: Includes a Dockerfile for straightforward deployment (recommended), but is also installable via pip/conda.
 
