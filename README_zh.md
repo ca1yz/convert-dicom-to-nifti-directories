@@ -1,32 +1,33 @@
 # Dcmsort2nii
 
-## Introduction
+## 简介
 
-`dcmsort2nii` is a Python tool that simplifies converting large, potentially **nested directories** of **DICOM** files into **NIfTI** format. It acts as a convenient wrapper around `dicom2nifti` for batch processing medical imaging datasets. Key features include automatic **sequence detection** (separating multiple sequences within one directory), **parallel conversion**, optional **4D splitting**, generation of a **metadata mapping file**, and easy deployment via **Dockerfile**.
+`dcmsort2nii` 是一个 Python 工具，旨在简化将大型、可能包含**嵌套目录**的 **DICOM** 文件转换为 **NIfTI** 格式的过程。它作为 `dicom2nifti` 的一个便捷封装，特别适用于批量处理医学影像数据集。主要功能包括自动**序列检测**（能够区分同一目录下的多个序列）、**并行转换**、可选的 **4D 文件分割**、生成**元数据映射文件**，以及通过 **Dockerfile** 实现的轻松部署。
 
-### Example Input / Output 
+### 输入/输出示例
 
-See example notebook [here](./example/example_notebook.ipynb)
+请参阅此处的示例 notebook：[./example/example_notebook.ipynb](./example/example_notebook.ipynb)
 
-## Installation
+## 安装
 
-There are two primary ways to use `dcmsort2nii`:
+使用 `dcmsort2nii` 主要有两种方式：
 
-### 1. Docker (Recommended)
+### 1. Docker (推荐)
 
-Using Docker is the recommended method as it encapsulates all dependencies and ensures consistent execution across different environments.
+推荐使用 Docker，因为它封装了所有依赖项，确保在不同环境中都能一致地执行。
 
-**a. Build the Docker Image:**
+**a. 构建 Docker 镜像:**
 
-Navigate to the project's root directory (where the `Dockerfile` is located) and run:
+导航到项目的根目录（包含 `Dockerfile` 的地方）并运行：
 
 ```bash
 docker build -t dcmsort2nii:latest .
 ```
 
-**b. Run the Docker Container:**
+**b. 运行 Docker 容器:**
 
-Change the `INPUT_DIR` and `OUTPUT_DIR` to your desired paths.
+将 `INPUT_DIR` 和 `OUTPUT_DIR` 更改为您期望的路径。
+
 ```bash
 INPUT_DIR=/path/to/your/dicom_root_dir
 OUTPUT_DIR=/path/to/your/output
@@ -41,7 +42,7 @@ docker run --rm \
   /data/input -o /data/output --split --log_error
 ```
 
-example output:
+**运行示例输出:**
 ```bash
 $ docker run --rm \      
   -v "$(pwd)/example/sample_data":/data/input:ro \
@@ -63,18 +64,18 @@ Final mapping saved to: /data/output/nifti_dicom_mapping.parquet
 Error log saved to: /data/output/error_log.csv
 ```
 
-### 2. Conda Installation
+### 2. Conda 安装
 
-If you prefer to install the tool without Docker, you can use the following steps:
+如果您不想使用 Docker，可以按照以下步骤安装：
 
-**a. Clone the Repository:**
+**a. 克隆仓库:**
 
 ```bash
 git clone https://github.com/ca1yz/dcmsort2nii.git
 cd dcmsort2nii
 ```
 
-**b. Create virtual environment and install the tool:**
+**b. 创建虚拟环境并安装工具:**
 
 ```bash
 conda create -n dcmsort2nii python=3.11 -y
@@ -82,13 +83,13 @@ conda activate dcmsort2nii
 pip install --no-cache-dir -e .
 ```
 
-**c. Run the Tool:**
+**c. 运行工具:**
 
 ```bash
 dcmsort2nii /path/to/your/dicom/files -o /path/to/your/output --split --log_error
 ```
 
-options:
+**命令行选项:**
 ```
 usage: main.py [-h] [-o OUTPUT_ROOT_DIR] [-e] [-s] [--no-split] [--log_debug]
                [--threads THREADS]
@@ -110,5 +111,6 @@ options:
   --threads THREADS     Number of worker processes (default: all available)
 ```
 
-## Acknowledgments
-The core functionality of this project is based on [dicom2nifti](https://github.com/icometrix/dicom2nifti). We greatly appreciate the work and contributions of its developers, which serve as the foundation for this project.
+## 致谢
+
+本项目的核心功能基于 [dicom2nifti](https://github.com/icometrix/dicom2nifti)。我们非常感谢其开发者的工作和贡献，他们的成果是本项目的基础。
