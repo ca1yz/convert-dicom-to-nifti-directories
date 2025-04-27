@@ -122,12 +122,6 @@ options:
   --threads THREADS     Number of worker processes (default: all available)
 ```
 
-## File an Issue
-
-We highly encourage you to try `dcmsort2nii` on your own datasets! Real-world testing is invaluable for improving the tool.
-
-Did you encounter a bug? Have an idea for a new feature or improvement? Did the tool struggle with your specific data structure or format? Please don't hesitate to **open an issue** on the GitHub repository! All feedback, positive or critical, is genuinely welcome and helps make `dcmsort2nii` better for everyone.
-
 ## Acknowledgments
 
 This project builds upon the core functionality provided by the fantastic [dicom2nifti](https://github.com/icometrix/dicom2nifti) library. We are deeply grateful to its developers for their excellent work, which serves as the foundation for `dcmsort2nii`.

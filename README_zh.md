@@ -122,12 +122,6 @@ usage: main.py [-h] [-o OUTPUT_ROOT_DIR] [-e] [-s] [--no-split] [--log_debug]
   --threads THREADS     工作进程数量 (默认: 所有可用核心)
 ```
 
-## 提交 Issue (问题反馈)
-
-我们希望您在自己的数据集上尝试 `dcmsort2nii`！真实世界的数据测试对于改进这个工具来说很宝贵。
-
-您是否遇到了 bug？对于新功能或改进有什么想法？这个工具在处理您特定的数据结构或格式时遇到了困难吗？在 GitHub 仓库上**提交一个 Issue**！无论是正面的还是批评性的反馈，都将帮助 `dcmsort2nii` 变得更好，惠及每一位用户。
-
 ## 致谢
 
 本项目的核心功能基于出色的 [dicom2nifti](https://github.com/icometrix/dicom2nifti) 项目。我们对其开发者们的杰出工作深表感谢，他们的成果是 `dcmsort2nii` 的基石。
